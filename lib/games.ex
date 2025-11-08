@@ -1,5 +1,7 @@
 alias Games.GuessingGame, as: GuessingGame
 alias Games.RockPaperScissors, as: RockPaperScissors
+alias Games.StringUtils, as: StringUtils
+
 
 defmodule Games do
   @moduledoc """
@@ -23,8 +25,7 @@ Enter the corresponding number to choose your game (1/2): \n")
 
   defp game_start_validation(input) do
     input
-    |> String.trim
-    |> Integer.parse
+    |> StringUtils.text_priming_for_integer_extraction
     |> case do
       {game_selection, _} -> {:ok, game_selection}
       :error -> {:error, :invalid_input}
@@ -38,5 +39,10 @@ Enter the corresponding number to choose your game (1/2): \n")
       {_, 2} -> RockPaperScissors.start_game
       _ -> IO.gets("\nInvalid game number selection detected. Please use the corresponding numeral to select a game from the list (1/2): \n") |> select_game
     end
+  end
+
+  def game_under_construction do
+    IO.puts("\nThis game is currently under construction. Please come back later. Taking you back to the starting menu. \n")
+    Games.play()
   end
 end

@@ -1,3 +1,5 @@
+alias Games.StringUtils, as: StringUtils
+
 defmodule Games.GuessingGame do
   @moduledoc """
   Documentation for `Games.GuessingGame`.
@@ -20,8 +22,7 @@ defmodule Games.GuessingGame do
 
   def guess_integrity_validate(guess) do
     guess
-    |> String.trim
-    |> Integer.parse
+    |> StringUtils.text_priming_for_integer_extraction
     |> case do
       {guess, _} -> if guess > 0 && guess < 11, do: guess, else: {:error, :invalid_guess}
       :error -> {:error, :invalid_guess}
@@ -91,8 +92,7 @@ defmodule Games.GuessingGame do
 
   def restart_or_end_validation(input) do
     input
-    |> String.trim
-    |> String.downcase
+    |> StringUtils.text_priming_for_validation
     |> case do
       response when response in ["n", "exit", "quit"] -> :end_game
       "y" -> :restart
