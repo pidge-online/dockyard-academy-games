@@ -1,10 +1,10 @@
 alias Games.StringUtils, as: StringUtils
-alias Games.EndOfGameProcedures, as: EndOfGameProcedures
+alias Games.GameProcedures, as: GameProcedures
 
 defmodule Games.RockPaperScissors do
   def start_game do
     # Games.game_under_construction()
-    IO.gets("\n To start playing, select rock, paper, or scissors
+    IO.gets("\nTo start playing, select rock, paper, or scissors
 (rock/paper/scissors): ")
   |> validate_selection
   |> compare_selection(generate_ai_selection())
@@ -26,14 +26,15 @@ defmodule Games.RockPaperScissors do
 
   defp compare_selection(input, ai_selection) do
     winning_moves = [{:rock, :scissors}, {:scissors, :paper}, {:paper, :rock}]
+    IO.puts("AI selected: #{ai_selection}!")
 
     cond do
-      {input, ai_selection} in winning_moves -> IO.gets("Congrats! You have one. Do you wish to try another round, quit, or return to the main menu? (y/n/r)")
-        |> EndOfGameProcedures.end_of_game_procedure(Games.RockPaperScissors.start_game)
-      {ai_selection, input} in winning_moves -> IO.gets("Darn it, the AI beat you! Oh well, always another chance. Would you like to try again, quit, or return to the main menu? (y/n/r)")
-        |> EndOfGameProcedures.end_of_game_procedure(Games.RockPaperScissors.start_game)
-      input == ai_selection -> IO.gets("Well how curious, the result is a draw. Would you like to try again, quit, or return to the main menu? (y/n/r)")
-        |> EndOfGameProcedures.end_of_game_procedure(Games.RockPaperScissors.start_game)
+      {input, ai_selection} in winning_moves -> IO.gets("Congrats! You have won. Do you wish to try another round, quit, or return to the main menu? (y/n/r): ")
+        |> GameProcedures.end_of_game_procedure(:rps)
+      {ai_selection, input} in winning_moves -> IO.gets("Darn it, the AI beat you! Oh well, always another chance. Would you like to try again, quit, or return to the main menu? (y/n/r): ")
+        |> GameProcedures.end_of_game_procedure(:rps)
+      input == ai_selection -> IO.gets("Well how curious, the result is a draw. Would you like to try again, quit, or return to the main menu? (y/n/r): ")
+        |> GameProcedures.end_of_game_procedure(:rps)
     end
   end
 end

@@ -1,5 +1,5 @@
 alias Games.StringUtils, as: StringUtils
-alias Games.EndOfGameProcedures, as: EndOfGameProcedures
+alias Games.GameProcedures, as: GameProcedures
 
 defmodule Games.GuessingGame do
   @moduledoc """
@@ -86,11 +86,11 @@ defmodule Games.GuessingGame do
 
   defp end_game_or_restart() do
     IO.gets("Congratulations, that was correct! Do you want to play again, quit, or return to the main menu? (y/n/r):  \n")
-    |> EndOfGameProcedures.end_of_game_procedure(Games.GuessingGame.start_game)
+    |> GameProcedures.end_of_game_procedure(:guessing_game)
   end
 
   defp end_game_or_restart(answer) do
     IO.gets("You have run out of attempts. The answer was #{answer}. Do you wish to try again, quit, or return to the main menu? (y/n/r): \n")
-    |> EndOfGameProcedures.end_of_game_procedure(Games.GuessingGame.start_game)
+    |> GameProcedures.end_of_game_procedure(:guessing_game)
   end
 end

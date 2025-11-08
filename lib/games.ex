@@ -8,10 +8,10 @@ defmodule Games do
   Documentation for `Games`.
   """
   def play do
-    IO.gets("Hi there! Please select a game to play:
+    IO.gets("\nHi there! Please select a game to play:
 
 1. 'GuessingGame' (guess a number from 1 to 10)
-2. '#{Enum.map(String.split("Rock Paper Scissors", ""), &(&1 <> "\u0336"))}' (Classic RPS) [UNDER CONSTRUCTION]
+2. 'Rock Paper Scissors' (Classic RPS, no spocks nor lizards)
 
 Enter the corresponding number to choose your game (1/2): \n")
     |> select_game
