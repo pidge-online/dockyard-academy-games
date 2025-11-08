@@ -1,6 +1,8 @@
 # Games
 
-**TODO: Add description**
+## Description
+
+A pair of CLI games based on the suggested exercises from the Dockyard Academy Elixir bootcamp.
 
 ## Installation
 

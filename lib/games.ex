@@ -2,7 +2,6 @@ alias Games.GuessingGame, as: GuessingGame
 alias Games.RockPaperScissors, as: RockPaperScissors
 alias Games.StringUtils, as: StringUtils
 
-
 defmodule Games do
   @moduledoc """
   Documentation for `Games`.
