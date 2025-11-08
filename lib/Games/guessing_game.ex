@@ -1,4 +1,5 @@
 alias Games.StringUtils, as: StringUtils
+alias Games.EndOfGameProcedures, as: EndOfGameProcedures
 
 defmodule Games.GuessingGame do
   @moduledoc """
@@ -83,31 +84,12 @@ defmodule Games.GuessingGame do
   end
 
   def end_game_or_restart() do
-    IO.gets("Congratulations, that was correct! Do you want to play again? (y/n):  \n") |> end_of_game_procedure
+    IO.gets("Congratulations, that was correct! Do you want to play again, quit, or return to the main menu? (y/n/r):  \n")
+    |> EndOfGameProcedures.end_of_game_procedure(Games.GuessingGame.start_game)
   end
 
   def end_game_or_restart(answer) do
-    IO.gets("You have run out of attempts. The answer was #{answer}. Do you wish to try again? (y/n): \n") |> end_of_game_procedure
-  end
-
-  def restart_or_end_validation(input) do
-    input
-    |> StringUtils.text_priming_for_validation
-    |> case do
-      response when response in ["n", "exit", "quit"] -> :end_game
-      "y" -> :restart
-      _ -> {:error, :restart_selection_invalid}
-    |> IO.inspect
-    end
-  end
-
-  def end_of_game_procedure(restart_or_end?) do
-    restart_or_end?
-    |> restart_or_end_validation
-    |> case do
-      :restart -> start_game()
-      :end_game -> IO.puts("Thanks for playing! Bye for now :)")
-      {:error, _} -> IO.gets("Selection invalid. Please select y (yes) or n (no) to play again or exit: \n") |> end_of_game_procedure
-    end
+    IO.gets("You have run out of attempts. The answer was #{answer}. Do you wish to try again, quit, or return to the main menu? (y/n/r): \n")
+    |> EndOfGameProcedures.end_of_game_procedure(Games.GuessingGame.start_game)
   end
 end
