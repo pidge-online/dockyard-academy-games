@@ -10,11 +10,11 @@ defmodule Games.RockPaperScissors do
   |> compare_selection(generate_ai_selection())
   end
 
-  def generate_ai_selection, do: Enum.take_random([:rock, :paper, :scissors], 1) |> List.first
+  defp generate_ai_selection, do: Enum.take_random([:rock, :paper, :scissors], 1) |> List.first
 
-  def is_valid_move?(input), do: if(input in ["rock", "paper", "scissors"], do: {:ok, String.to_existing_atom(input)}, else: {:error, :invalid_input})
+  defp is_valid_move?(input), do: if(input in ["rock", "paper", "scissors"], do: {:ok, String.to_existing_atom(input)}, else: {:error, :invalid_input})
 
-  def validate_selection(string) do
+  defp validate_selection(string) do
     string
     |> StringUtils.text_priming_for_validation
     |> is_valid_move?
@@ -24,7 +24,7 @@ defmodule Games.RockPaperScissors do
     end
   end
 
-  def compare_selection(input, ai_selection) do
+  defp compare_selection(input, ai_selection) do
     winning_moves = [{:rock, :scissors}, {:scissors, :paper}, {:paper, :rock}]
 
     cond do

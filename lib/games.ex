@@ -40,9 +40,4 @@ Enter the corresponding number to choose your game (1/2): \n")
       _ -> IO.gets("\nInvalid game number selection detected. Please use the corresponding numeral to select a game from the list (1/2): \n") |> select_game
     end
   end
-
-  def game_under_construction do
-    IO.puts("\nThis game is currently under construction. Please come back later. Taking you back to the starting menu. \n")
-    Games.play()
-  end
 end
