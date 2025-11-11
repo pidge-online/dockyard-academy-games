@@ -2,7 +2,10 @@
 
 ## Description
 
-A pair of CLI games based on the suggested exercises from the Dockyard Academy Elixir bootcamp.
+A set of CLI games based on the suggested exercises from the Dockyard Academy Elixir bootcamp. Includes:
+  - GuessingGame (guess an integer from 1-10)
+  - Rock Paper Scissors
+  - Wordle (under construction)
 
 ## Installation
 
