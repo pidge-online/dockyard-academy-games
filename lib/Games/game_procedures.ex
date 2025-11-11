@@ -26,8 +26,9 @@ defmodule Games.GameProcedures do
 
   def restart_game(game) do
     case game do
-      :guessing_game -> Games.GuessingGame.start_game()
-      :rps -> Games.RockPaperScissors.start_game()
+      :guessing_game -> Games.GuessingGame.start_game
+      :rps -> Games.RockPaperScissors.start_game
+      :wordle -> Games.Wordle.start_game
     end
   end
 end

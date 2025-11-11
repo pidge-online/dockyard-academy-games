@@ -1,5 +1,6 @@
 alias Games.GuessingGame, as: GuessingGame
 alias Games.RockPaperScissors, as: RockPaperScissors
+alias Games.Wordle, as: Wordle
 alias Games.StringUtils, as: StringUtils
 
 defmodule Games do
@@ -11,6 +12,7 @@ defmodule Games do
 
 1. 'GuessingGame' (guess a number from 1 to 10)
 2. 'Rock Paper Scissors' (Classic RPS, no spocks nor lizards)
+3. 'Wordle' (Guess the 5 letter word in 6 attempts)
 
 Enter the corresponding number to choose your game (1/2): \n")
     |> select_game
@@ -36,6 +38,7 @@ Enter the corresponding number to choose your game (1/2): \n")
       {:error, _} -> IO.gets("\nInvalid input format detected. Please use the corresponding numeral to select a game from the list (1/2): \n") |> select_game
       {_, 1} -> GuessingGame.start_game
       {_, 2} -> RockPaperScissors.start_game
+      {_, 3} -> Wordle.start_game
       _ -> IO.gets("\nInvalid game number selection detected. Please use the corresponding numeral to select a game from the list (1/2): \n") |> select_game
     end
   end
