@@ -67,10 +67,12 @@ defmodule Games.GuessingGame do
 
   defp check_result(result, answer, attempts) do
     if out_of_attempts(result, attempts - 1) == true do
-      end_game_or_restart(answer)
+      IO.gets("You have run out of attempts. The answer was #{answer}. Do you wish to try again, quit, or return to the main menu? (y/n/r): \n")
+      |> GameProcedures.end_of_game_procedure(:guessing_game)
     else
       case result do
-        {:ok, _} -> end_game_or_restart()
+        {:ok, _} -> IO.gets("Congratulations, that was correct! Do you want to play again, quit, or return to the main menu? (y/n/r):  \n")
+          |> GameProcedures.end_of_game_procedure(:guessing_game)
         {_, :invalid_guess} -> retry_guess(:invalid_guess, answer, attempts - 1)
         {_, {:incorrect_guess, guess}} -> retry_guess(:incorrect_guess, guess, answer, attempts - 1)
       end
@@ -82,15 +84,5 @@ defmodule Games.GuessingGame do
       attempts == 0 && elem(result, 0) == :error -> true
       true -> false
     end
-  end
-
-  defp end_game_or_restart() do
-    IO.gets("Congratulations, that was correct! Do you want to play again, quit, or return to the main menu? (y/n/r):  \n")
-    |> GameProcedures.end_of_game_procedure(:guessing_game)
-  end
-
-  defp end_game_or_restart(answer) do
-    IO.gets("You have run out of attempts. The answer was #{answer}. Do you wish to try again, quit, or return to the main menu? (y/n/r): \n")
-    |> GameProcedures.end_of_game_procedure(:guessing_game)
   end
 end
