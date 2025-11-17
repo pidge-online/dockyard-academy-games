@@ -14,7 +14,7 @@ defmodule Games do
 2. 'Rock Paper Scissors' (Classic RPS, no spocks nor lizards)
 3. 'Wordle' (Guess the 5 letter word in 6 attempts)
 
-Enter the corresponding number to choose your game (1/2): \n")
+Enter the corresponding number to choose your game (1/2/3): \n")
     |> select_game
   end
 
